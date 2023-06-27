@@ -9,25 +9,16 @@ public class Client {
 	private  int Numero=0;
 	private String Nom,Adresse;
 	
-   BufferedReader buff;
    
 	public Client() {
-		
-		buff = new BufferedReader(new InputStreamReader(System.in));
-		  this.Numero=++compteur;
-		  	
-	    try {
-	    	System.out.printf("Entrez le Nom du client N°%d:",Numero,"\n");
-			Nom = buff.readLine();
-			
-			System.out.printf("Entrez l'adresse de %s:",this.Nom,"\n");
-			Adresse=buff.readLine();
-		  		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}		
- }
+
+		this.Numero=++compteur;
+		Nom = Clavier(String.format("Entrez le Nom du client N°%d:",Numero,"\n"));
+
+		Adresse=Clavier(String.format("Entrez l'adresse de %s:",this.Nom,"\n"));
+
+
+	}
 	
 	
 	public void Affiche() {
@@ -35,7 +26,21 @@ public class Client {
 System.out.println("Numero: "+Numero+",Nom: "+Nom+",habite à "+Adresse);
 	}
 	
-	
+	public String Clavier(String a) {
+		String value="";
+
+		BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println(a);
+
+		try {
+			value=buff.readLine();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		return value;
+	}
+
 	public String getNom() {
 		return Nom;
 	}

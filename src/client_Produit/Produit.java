@@ -11,32 +11,38 @@ public class Produit {
 	private String Designation;
 	private double Prix;
 	
-	BufferedReader buff;
+	
 
 	public Produit() {
-		
-	buff = new BufferedReader(new InputStreamReader(System.in));
 	
 		++compteur;
 		Numero=compteur;
-				
-		try {
-			System.out.printf("Entrez le nom du produit N°%d: ",this.Numero,"\n");
-			Designation=buff.readLine();
-			
-			System.out.printf("Entrez le prix du %s:",this.Designation,"\n");
-			Prix=Double.parseDouble(buff.readLine());
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}		
-				
-}
+
+		Designation=Clavier(String.format("Entrez le nom du produit N°%d: ",this.Numero,"\n"));
+
+		Prix=Double.parseDouble(Clavier(String.format("Entrez le prix du %s:",this.Designation,"\n")));
+
+	}
 	
 	public void Affiche() {
 	System.out.println("Numero: "+Numero+" ,Designation: "+Designation+" ,Prix: "+Prix+"fbu");
 	}
 	
+	public String Clavier(String a) {
+		String value="";
+
+		BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println(a);
+
+		try {
+			value=buff.readLine();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		return value;
+	}
+
 	
 	public int getNumero() {
 		return Numero;
